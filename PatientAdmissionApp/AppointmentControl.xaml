@@ -11,7 +11,7 @@
             <TextBlock Text="Appointment Confirmation" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
 
             <TextBlock Text="Patient Name:"/>
-            <TextBox x:Name="PatientNameTextBox" Width="200"/>
+            <TextBox x:Name="PatientNameTextBox" Width="200" Text="{Binding Patients.Name}"/>
 
             <TextBlock Text="Appointment Date:"/>
             <DatePicker x:Name="AppointmentDatePicker" Width="200"/>
@@ -27,9 +27,9 @@
 
 
             <TextBlock Text="Registered Patients" FontSize="16" FontWeight="Bold" Margin="0,20,0,5"/>
-            <DataGrid x:Name="PatientsDataGrid" AutoGenerateColumns="False" Height="200" Margin="0,10,0,0">
+            <DataGrid x:Name="PatientsDataGrid" AutoGenerateColumns="False" Height="200" Margin="0,10,0,0" ItemsSource="{Binding Patients}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Patient Name" Binding="{Binding PatientName}" Width="*"/>
+                    <DataGridTextColumn Header="Patient Name" Binding="{Binding Name}" Width="*"/>
                     <DataGridTextColumn Header="Age" Binding="{Binding Age}" Width="*"/>
                     <DataGridTextColumn Header="Date of Birth" Binding="{Binding DateOfBirth}" Width="*"/>
                     <DataGridTextColumn Header="Slot" Binding="{Binding Slot}" Width="*"/>
