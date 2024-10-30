@@ -39,5 +39,17 @@ namespace PatientAdmissionApp
                 }
             }
         }
+
+        private void btnAppointment_Click(object sender, RoutedEventArgs e)
+        {
+            var appointmentControl = new AppointmentControl();
+            var appointmentWindow = Window.GetWindow(this) as MainWindow;
+
+            if (appointmentWindow != null)
+            {
+                appointmentWindow.MainContent.Content = appointmentControl;
+
+            }
+        }
     }
 }
