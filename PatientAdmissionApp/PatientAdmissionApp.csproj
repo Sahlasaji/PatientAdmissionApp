@@ -87,6 +87,7 @@
     <Compile Include="PatientDashboardControl.xaml.cs">
       <DependentUpon>PatientDashboardControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PatientModel.cs" />
     <Compile Include="PatientRegistrationControl.xaml.cs">
       <DependentUpon>PatientRegistrationControl.xaml</DependentUpon>
     </Compile>

@@ -54,12 +54,12 @@ namespace PatientAdmissionApp
 
         private void btnDashboard_Click(object sender, RoutedEventArgs e)
         {
-            var appointmentControl = new PatientDashboardControl();
-            var appointmentWindow = Window.GetWindow(this) as MainWindow;
+            var patientDashboardControl = new PatientDashboardControl();
+            var patientDashboard = Window.GetWindow(this) as MainWindow;
 
-            if (appointmentWindow != null)
+            if (patientDashboard != null)
             {
-                appointmentWindow.MainContent.Content = appointmentControl;
+                patientDashboard.MainContent.Content = patientDashboardControl;
 
             }
         }
