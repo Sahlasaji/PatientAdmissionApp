@@ -23,7 +23,7 @@ namespace PatientAdmissionApp
         public PatientDashboardControl()
         {
             InitializeComponent();
-            this.DataContext = new PatientViewModel();
+            //this.DataContext = PatientViewModel.Instance;
 
         }
     }

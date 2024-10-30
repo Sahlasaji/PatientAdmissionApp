@@ -1,11 +1,24 @@
 ﻿using System.Collections.ObjectModel;
-using System.Windows;
 using System.Windows.Input;
+using System.Windows;
 
 namespace PatientAdmissionApp
 {
     public class PatientViewModel : BaseViewModel
     {
+        // Singleton implementation
+        private static PatientViewModel _instance;
+        public static PatientViewModel Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new PatientViewModel();
+                }
+                return _instance;
+            }
+        }
         public ObservableCollection<PatientModel> Patients { get; set; } = new ObservableCollection<PatientModel>();
 
         private PatientModel _newPatient;
@@ -22,14 +35,15 @@ namespace PatientAdmissionApp
             set { _selectedPatient = value; OnPropertyChanged(); }
         }
 
-        public ICommand RegisterPatientCommand { get; set;}
+        public ICommand RegisterPatientCommand { get; set; }
         public ICommand SendUpdateCommand { get; set; }
         public ICommand ShowRegistrationCommand { get; set; }
         public ICommand ShowAppointmentCommand { get; set; }
         public ICommand ShowDashboardCommand { get; set; }
         public ICommand ExitCommand { get; set; }
 
-        public PatientViewModel()
+        // Private constructor for singleton pattern
+        private PatientViewModel()
         {
             NewPatient = new PatientModel();
             RegisterPatientCommand = new RelayCommand(RegisterPatient);
@@ -51,11 +65,9 @@ namespace PatientAdmissionApp
                 Slot = NewPatient.Slot,
                 BookingDate = NewPatient.BookingDate
             });
-            NewPatient = new PatientModel();
+            NewPatient = new PatientModel(); // Reset for new entry
             MessageBox.Show("Reached create method!!!!");
-
         }
-
 
         private void SendUpdate(object parameter)
         {
@@ -64,7 +76,7 @@ namespace PatientAdmissionApp
 
         private void ShowRegistration(object parameter)
         {
-            CurrentView = new PatientRegistrationControl();
+            CurrentView = new PatientRegistrationControl { DataContext = this };
         }
 
         private void ShowAppointment(object parameter)
@@ -79,7 +91,7 @@ namespace PatientAdmissionApp
 
         private void ExitApplication(object parameter)
         {
-            //Application.Current.Shutdown();
+            Application.Current.Shutdown();
         }
     }
 }
