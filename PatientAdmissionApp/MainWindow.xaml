@@ -18,8 +18,8 @@
             
             <Button Content="Patient Registration"  Width="160" Height="40" Margin="0,10" x:Name="btnRegistration" Click="btnRegistration_Click" />
             <Button Content="Appointment Confirmation"  Width="160" Height="40" Margin="0,10" x:Name="btnAppointment" Click="btnAppointment_Click" />
-            <Button Content="Patient Dashboard"  Width="160" Height="40" Margin="0,10" />
-            <Button Content="Exit"  Width="160" Height="40" Margin="0,10" />
+            <Button Content="Patient Dashboard" x:Name="btnDashboard" Width="160" Height="40" Margin="0,10" Click="btnDashboard_Click" />
+            <Button Content="Exit" x:Name="Exit" Width="160" Height="40" Margin="0,10" Click="Exit_Click" />
         </StackPanel>
 
         <ContentControl x:Name="MainContent" Grid.Column="1" Margin="20" />

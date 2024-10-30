@@ -74,12 +74,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PatientDashboardControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PatientRegistrationControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PatientDashboardControl.xaml.cs">
+      <DependentUpon>PatientDashboardControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PatientRegistrationControl.xaml.cs">
       <DependentUpon>PatientRegistrationControl.xaml</DependentUpon>
     </Compile>
