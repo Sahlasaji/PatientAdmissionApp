@@ -10,7 +10,7 @@ namespace PatientAdmissionApp
         public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = PatientViewModel.Instance;
+            this.DataContext = new PatientViewModel();
 
         }
 

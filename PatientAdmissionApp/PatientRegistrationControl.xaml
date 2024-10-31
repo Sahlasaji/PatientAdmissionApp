@@ -18,10 +18,15 @@
             <TextBlock Text="Address:" />
                 <TextBox x:Name="AddressTextBox" Text="{Binding NewPatient.Address}"/>
             <TextBlock Text="Slot:" />
-            <ComboBox x:Name="SlotComboBox">
-                <ComboBoxItem Content="Morning" />
-                <ComboBoxItem Content="Evening" />
+            <ComboBox x:Name="SlotComboBox" 
+          SelectedValue="{Binding NewPatient.Slot, Mode=TwoWay}"
+                      SelectionChanged="SlotComboBox_SelectionChanged">
+                <ComboBoxItem Content="Morning" Tag="True" />
+                <ComboBoxItem Content="Evening" Tag="False" />
             </ComboBox>
+
+
+
             <TextBlock Text="Booking Date:" />
             <DatePicker x:Name="BookingDatePicker" Text="{Binding NewPatient.Name}" />
             <Button Content="Register" Width="100" Height="30" Margin="0,10,0,0" Command="{Binding RegisterPatientCommand}" />

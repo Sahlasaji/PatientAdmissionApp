@@ -12,9 +12,9 @@ namespace PatientAdmissionApp
         public int Age { get; set; }
         public DateTime DateofBirth { get; set; }
         public string Address { get; set; }
-        public bool Slot { get; set; }
         public DateTime BookingDate { get; set; }
         public DateTime ApponitmentDate { get; set; }
         public string ConfirmationStatus { get; set; }
+        public bool Slot { get; set; }
     }
 }
