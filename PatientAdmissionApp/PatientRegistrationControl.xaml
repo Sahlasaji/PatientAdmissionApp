@@ -20,7 +20,7 @@
             <TextBlock Text="Slot:" />
             <ComboBox x:Name="SlotComboBox" 
           SelectedValue="{Binding NewPatient.Slot, Mode=TwoWay}"
-                      SelectionChanged="SlotComboBox_SelectionChanged">
+                      >
                 <ComboBoxItem Content="Morning" Tag="True" />
                 <ComboBoxItem Content="Evening" Tag="False" />
             </ComboBox>
