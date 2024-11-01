@@ -17,6 +17,7 @@
                     <DataGridTextColumn Header="Age" Binding="{Binding Age}" />
                     <DataGridTextColumn Header="Address" Binding="{Binding Address}" />
                     <DataGridTextColumn Header="ConfirmationStatus" Binding="{Binding ConfirmationStatus}" />
+                    <DataGridTextColumn Header="AppointmentDate" Binding="{Binding AppointmentDate}" />
                     
                 </DataGrid.Columns>
             </DataGrid>

@@ -16,17 +16,17 @@ namespace PatientAdmissionApp
 
         private void btnRegistration_Click(object sender, RoutedEventArgs e)
         {
-            
-
-                var confirmationControl = new PatientRegistrationControl();
 
 
-                var mainWindow = Window.GetWindow(this) as MainWindow;
-                if (mainWindow != null)
-                {
-                    mainWindow.MainContent.Content = confirmationControl;
-                }
-            
+            var confirmationControl = new PatientRegistrationControl();
+
+
+            var mainWindow = Window.GetWindow(this) as MainWindow;
+            if (mainWindow != null)
+            {
+                mainWindow.MainContent.Content = confirmationControl;
+            }
+
         }
 
         private void btnAppointment_Click(object sender, RoutedEventArgs e)

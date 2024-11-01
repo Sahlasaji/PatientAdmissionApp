@@ -5,7 +5,7 @@ using System.Windows.Input;
 
 namespace PatientAdmissionApp
 {
-    public class PatientViewModel : BaseViewModel
+    public class PatientViewModel : BaseViewModel, Ipatient
     {
         public event EventHandler AppointmentUpdated;
         public ObservableCollection<PatientModel> Patients { get; set; } = new ObservableCollection<PatientModel>();
@@ -34,29 +34,22 @@ namespace PatientAdmissionApp
 
         public ICommand RegisterPatientCommand { get; set;}
         public ICommand SendUpdateCommand { get; set; }
-        public ICommand ShowRegistrationCommand { get; set; }
-        public ICommand ShowAppointmentCommand { get; set; }
-        public ICommand ShowDashboardCommand { get; set; }
-        public ICommand ExitCommand { get; set; }
+        
 
         public PatientViewModel()
         {
             NewPatient = new PatientModel();
             RegisterPatientCommand = new RelayCommand(RegisterPatient);
             SendUpdateCommand = new RelayCommand(SendUpdate);
-            ShowRegistrationCommand = new RelayCommand(ShowRegistration);
-            ShowAppointmentCommand = new RelayCommand(ShowAppointment);
-            ShowDashboardCommand = new RelayCommand(ShowDashboard);
-            ExitCommand = new RelayCommand(ExitApplication);
         }
 
-        private void RegisterPatient(object parameter)
+        public void RegisterPatient(object parameter)
         {
             Patients.Add(new PatientModel
             {
                 Name = NewPatient.Name,
-                Age = NewPatient.Age,
                 Dateofbirth = NewPatient.Dateofbirth,
+                Age = NewPatient.Age,
                 Address = NewPatient.Address,
                 Slot = NewPatient.Slot,
                 BookingDate = NewPatient.BookingDate
@@ -67,11 +60,12 @@ namespace PatientAdmissionApp
         }
 
 
-        private void SendUpdate(object parameter)
+        public void SendUpdate(object parameter)
         {
             if(SelectedPatient != null)
             {
                 SelectedPatient.ConfirmationStatus = NewPatient.ConfirmationStatus;
+                SelectedPatient.AppointmentDate = NewPatient.AppointmentDate;
                 OnAppointmentUpdated();
                 if(!ConfirmedPatients.Contains(SelectedPatient))
                 {
@@ -88,26 +82,6 @@ namespace PatientAdmissionApp
         protected virtual void OnAppointmentUpdated()
         {
             AppointmentUpdated?.Invoke(this, EventArgs.Empty);
-        }
-
-        private void ShowRegistration(object parameter)
-        {
-            CurrentView = new PatientRegistrationControl() { DataContext = this }; 
-        }
-
-        private void ShowAppointment(object parameter)
-        {
-            CurrentView = new AppointmentControl() { DataContext = this };
-        }
-
-        private void ShowDashboard(object parameter)
-        {
-            CurrentView = new PatientDashboardControl { DataContext = this  };
-        }
-
-        private void ExitApplication(object parameter)
-        {
-            Application.Current.Shutdown();
         }
     }
 }

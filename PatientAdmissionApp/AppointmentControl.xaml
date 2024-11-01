@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PatientAdmissionApp" d:DataContext="{d:DesignInstance Type=local:PatientViewModel}"
              mc:Ignorable="d" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Margin="20">
         <StackPanel>
@@ -14,7 +15,7 @@
             <TextBox x:Name="PatientNameTextBox" Width="200" Text="{Binding SelectedPatient.Name}"/>
 
             <TextBlock Text="Appointment Date:"/>
-            <DatePicker x:Name="AppointmentDatePicker" Width="200" SelectedDateFormat="Short" SelectedDate="{Binding NewPatient.ApponitmentDate}"/>
+            <DatePicker x:Name="AppointmentDatePicker" Width="200"  SelectedDate="{Binding NewPatient.AppointmentDate}"  SelectedDateFormat="Short"/>
 
             <TextBlock Text="Confirmation Status:"/>
             <ComboBox x:Name="StatusComboBox" Width="200" Text="{Binding NewPatient.ConfirmationStatus}">
