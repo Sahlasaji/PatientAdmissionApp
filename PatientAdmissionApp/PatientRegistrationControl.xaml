@@ -15,8 +15,6 @@
             <TextBox x:Name="NameTextBox" Text="{Binding NewPatient.Name}" />
             <TextBlock Text="Date of Birth:" />
             <DatePicker x:Name="DOBPicker" SelectedDate="{Binding NewPatient.Dateofbirth}" SelectedDateFormat="Short" DisplayDateEnd="{x:Static sys:DateTime.Now}"/>
-            <TextBlock Text="Age:" />
-            <TextBox x:Name="AgeTextBox" Text="{Binding NewPatient.Age, Mode=TwoWay}" IsReadOnly="True"/>
             
             <TextBlock Text="Address:" />
                 <TextBox x:Name="AddressTextBox" Text="{Binding NewPatient.Address}"/>
