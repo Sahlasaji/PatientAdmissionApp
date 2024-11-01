@@ -15,8 +15,8 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
                     <DataGridTextColumn Header="Age" Binding="{Binding Age}" />
-                    <DataGridTextColumn Header="Gender" Binding="{Binding Gender}" />
-                    <DataGridTextColumn Header="Contact" Binding="{Binding Contact}" />
+                    <DataGridTextColumn Header="Address" Binding="{Binding Address}" />
+                    
                 </DataGrid.Columns>
             </DataGrid>
 

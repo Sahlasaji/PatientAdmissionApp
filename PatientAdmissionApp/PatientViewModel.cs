@@ -52,13 +52,13 @@ namespace PatientAdmissionApp
             {
                 Name = NewPatient.Name,
                 Age = NewPatient.Age,
-                DateofBirth = NewPatient.DateofBirth,
+                Dateofbirth = NewPatient.Dateofbirth,
                 Address = NewPatient.Address,
                 Slot = NewPatient.Slot,
                 BookingDate = NewPatient.BookingDate
             });
             NewPatient = new PatientModel();
-            MessageBox.Show("Reached create method!!!!");
+            MessageBox.Show("Registration Success!!!!");
 
         }
 
@@ -80,7 +80,7 @@ namespace PatientAdmissionApp
 
         private void ShowDashboard(object parameter)
         {
-            CurrentView = new PatientDashboardControl {DataContext = this  };
+            CurrentView = new PatientDashboardControl { DataContext = this  };
         }
 
         private void ExitApplication(object parameter)
