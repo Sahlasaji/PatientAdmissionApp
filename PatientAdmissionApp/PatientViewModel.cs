@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
 
@@ -6,7 +7,10 @@ namespace PatientAdmissionApp
 {
     public class PatientViewModel : BaseViewModel
     {
+        public event EventHandler AppointmentUpdated;
         public ObservableCollection<PatientModel> Patients { get; set; } = new ObservableCollection<PatientModel>();
+        public ObservableCollection<PatientModel> ConfirmedPatients { get; set; } = new ObservableCollection<PatientModel>();
+
 
         private PatientModel _newPatient;
         public PatientModel NewPatient
@@ -65,7 +69,25 @@ namespace PatientAdmissionApp
 
         private void SendUpdate(object parameter)
         {
-            // Logic to send update
+            if(SelectedPatient != null)
+            {
+                SelectedPatient.ConfirmationStatus = NewPatient.ConfirmationStatus;
+                OnAppointmentUpdated();
+                if(!ConfirmedPatients.Contains(SelectedPatient))
+                {
+                    ConfirmedPatients.Add(SelectedPatient);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a Patient");
+            }
+            
+        }
+
+        protected virtual void OnAppointmentUpdated()
+        {
+            AppointmentUpdated?.Invoke(this, EventArgs.Empty);
         }
 
         private void ShowRegistration(object parameter)

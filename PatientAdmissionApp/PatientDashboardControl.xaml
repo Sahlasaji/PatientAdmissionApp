@@ -11,19 +11,20 @@
             <TextBlock Text="Patient Dashboard" FontSize="22" FontWeight="Bold" Margin="0,0,0,20"/>
 
             <!-- Patients DataGrid -->
-            <DataGrid ItemsSource="{Binding Patients}" AutoGenerateColumns="False" Height="150">
+            <DataGrid ItemsSource="{Binding ConfirmedPatients}" AutoGenerateColumns="False" Height="150">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
                     <DataGridTextColumn Header="Age" Binding="{Binding Age}" />
                     <DataGridTextColumn Header="Address" Binding="{Binding Address}" />
+                    <DataGridTextColumn Header="ConfirmationStatus" Binding="{Binding ConfirmationStatus}" />
                     
                 </DataGrid.Columns>
             </DataGrid>
 
             <!-- Medical Records DataGrid -->
-            <DataGrid ItemsSource="{Binding MedicalRecords}" AutoGenerateColumns="False" Height="200" Margin="0,20,0,0">
+            <DataGrid ItemsSource="{Binding ConfirmedPatients}" AutoGenerateColumns="False" Height="200" Margin="0,20,0,0">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Date" Binding="{Binding Date}" />
+                    <DataGridTextColumn Header="Date" Binding="{Binding AppointmentDate}" />
                     <DataGridTextColumn Header="Diagnosis" Binding="{Binding Diagnosis}" />
                     <DataGridTextColumn Header="Prescription" Binding="{Binding Prescription}" />
                     <DataGridTextColumn Header="Notes" Binding="{Binding Notes}" />
