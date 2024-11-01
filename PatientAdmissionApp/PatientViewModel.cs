@@ -49,7 +49,7 @@ namespace PatientAdmissionApp
             {
                 Name = NewPatient.Name,
                 Dateofbirth = NewPatient.Dateofbirth,
-                Age = NewPatient.Age,
+                Age = DateTime.Now.Year - NewPatient.Dateofbirth.Year,
                 Address = NewPatient.Address,
                 Slot = NewPatient.Slot,
                 BookingDate = NewPatient.BookingDate
