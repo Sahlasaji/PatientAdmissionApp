@@ -53,7 +53,7 @@ namespace PatientAdmissionApp
             }
         }
 
-        private void Exit_Click(object sender, RoutedEventArgs e)
+        private void Window_Closed(object sender, System.EventArgs e)
         {
             Application.Current.Shutdown();
         }

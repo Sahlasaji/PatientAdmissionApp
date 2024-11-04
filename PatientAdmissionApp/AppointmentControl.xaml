@@ -9,33 +9,28 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Margin="20">
         <StackPanel>
-            <TextBlock Text="Appointment Confirmation" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+            <TextBlock Text="Appointment Confirmation" FontSize="24" FontWeight="Bold" Margin="0,0,0,20"/>
 
-            <TextBlock Text="Patient Name:"/>
-            <TextBox x:Name="PatientNameTextBox" Width="200" Text="{Binding SelectedPatient.Name}"/>
+            <ListBox ItemsSource="{Binding Patients}" x:Name="PatientsListBox" Height="300">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical" Margin="0,0,0,10">
+                            <TextBlock Text="{Binding Name}" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding Slot}" />
+                            <TextBlock Text="{Binding BookingDate, StringFormat='{}{0:MM/dd/yyyy}'}" />
 
-            <TextBlock Text="Appointment Date:"/>
-            <DatePicker x:Name="AppointmentDatePicker" Width="200"  SelectedDate="{Binding NewPatient.AppointmentDate}"  SelectedDateFormat="Short"/>
-
-            <TextBlock Text="Confirmation Status:"/>
-            <ComboBox x:Name="StatusComboBox" Width="200" Text="{Binding NewPatient.ConfirmationStatus}">
-                <ComboBoxItem Content="Confirmed"/>
-                <ComboBoxItem Content="Pending"/>
-                <ComboBoxItem Content="Cancelled"/>
-            </ComboBox>
-
-            <Button Content="Send Update" Width="100" Height="30" Margin="0,10,0,0" Command="{Binding SendUpdateCommand}"/>
-
-
-            <TextBlock Text="Registered Patients" FontSize="16" FontWeight="Bold" Margin="0,20,0,5"/>
-            <DataGrid x:Name="PatientsDataGrid" AutoGenerateColumns="False" Height="200" Margin="0,10,0,0" ItemsSource="{Binding Patients}" SelectedItem="{Binding SelectedPatient, Mode=TwoWay}" SelectionChanged="PatientsDataGrid_SelectionChanged">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Patient Name" Binding="{Binding Name}" Width="*"/>
-                    <DataGridTextColumn Header="Age" Binding="{Binding Age}" Width="*"/>
-                    <DataGridTextColumn Header="Booking Date" Binding="{Binding BookingDate}" Width="*"/>
-                    <DataGridTextColumn Header="Slot" Binding="{Binding Slot}" Width="*"/>
-                </DataGrid.Columns>
-            </DataGrid>
+                            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                                <Button Content="Confirm" Width="75" Margin="5,0,5,0" 
+                                    Command="{Binding DataContext.ConfirmAppointmentCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                    CommandParameter="{Binding}" />
+                                <Button Content="Cancel" Width="75" Margin="5,0,5,0" 
+                                    Command="{Binding DataContext.CancelAppointmentCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                    CommandParameter="{Binding}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </StackPanel>
     </Grid>
 

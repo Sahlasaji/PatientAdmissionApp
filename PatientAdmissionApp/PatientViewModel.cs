@@ -5,12 +5,12 @@ using System.Windows.Input;
 
 namespace PatientAdmissionApp
 {
-    public class PatientViewModel : BaseViewModel, Ipatient
+     public class PatientViewModel : BaseViewModel, Ipatient
     {
+        public event EventHandler ShowRegistrationRequested;
         public event EventHandler AppointmentUpdated;
         public ObservableCollection<PatientModel> Patients { get; set; } = new ObservableCollection<PatientModel>();
         public ObservableCollection<PatientModel> ConfirmedPatients { get; set; } = new ObservableCollection<PatientModel>();
-
 
         private PatientModel _newPatient;
         public PatientModel NewPatient
@@ -19,28 +19,21 @@ namespace PatientAdmissionApp
             set { _newPatient = value; OnPropertyChanged(); }
         }
 
-        private PatientModel _selectedPatient;
-        public PatientModel SelectedPatient
-        {
-            get { return _selectedPatient; }
-            set { _selectedPatient = value; OnPropertyChanged(); }
-        }
-        private bool _selectedSlot;
-        public bool SelectedSlot
-        {
-            get { return _selectedSlot; }
-            set { _selectedSlot = value; OnPropertyChanged(nameof(SelectedSlot)); }
-        }
+        public ICommand RegisterPatientCommand { get; set; }
+        public ICommand ConfirmAppointmentCommand { get; set; }
+        public ICommand CancelAppointmentCommand { get; set; }
+        public ICommand RequestShowRegistrationCommand { get; set; }
 
-        public ICommand RegisterPatientCommand { get; set;}
-        public ICommand SendUpdateCommand { get; set; }
-        
+
 
         public PatientViewModel()
         {
             NewPatient = new PatientModel();
             RegisterPatientCommand = new RelayCommand(RegisterPatient);
-            SendUpdateCommand = new RelayCommand(SendUpdate);
+            ConfirmAppointmentCommand = new RelayCommand(ConfirmAppointment);
+            CancelAppointmentCommand = new RelayCommand(CancelAppointment);
+            RequestShowRegistrationCommand = new RelayCommand(RequestShowRegistration);
+
         }
 
         public void RegisterPatient(object parameter)
@@ -53,35 +46,47 @@ namespace PatientAdmissionApp
                 Address = NewPatient.Address,
                 Slot = NewPatient.Slot,
                 BookingDate = NewPatient.BookingDate
+               
             });
             NewPatient = new PatientModel();
             MessageBox.Show("Registration Success!!!!");
-
         }
 
-
-        public void SendUpdate(object parameter)
+        public void ConfirmAppointment(object parameter)
         {
-            if(SelectedPatient != null)
+            if (parameter is PatientModel patient)
             {
-                SelectedPatient.ConfirmationStatus = NewPatient.ConfirmationStatus;
-                SelectedPatient.AppointmentDate = NewPatient.AppointmentDate;
-                OnAppointmentUpdated();
-                if(!ConfirmedPatients.Contains(SelectedPatient))
-                {
-                    ConfirmedPatients.Add(SelectedPatient);
-                }
+                // Move patient to ConfirmedPatients and remove from Patients
+                patient.ConfirmationStatus = "Confirmed";
+               
+
+                ConfirmedPatients.Add(patient);
+                Patients.Remove(patient);
+                AppointmentUpdated?.Invoke(this,EventArgs.Empty);
+                MessageBox.Show($"{patient.Name}'s appointment confirmed.");
             }
-            else
-            {
-                MessageBox.Show("Please select a Patient");
-            }
-            
         }
 
-        protected virtual void OnAppointmentUpdated()
+        public void CancelAppointment(object parameter)
         {
-            AppointmentUpdated?.Invoke(this, EventArgs.Empty);
+            if (parameter is PatientModel patient)
+            {
+                // Remove patient from Patients
+                Patients.Remove(patient);
+                MessageBox.Show($"{patient.Name}'s appointment has been canceled.");
+            }
         }
+
+        private void RequestShowRegistration(object parameter)
+        {
+            ShowRegistrationRequested?.Invoke(this, EventArgs.Empty);
+        }
+
+
+        
     }
 }
+
+
+
+

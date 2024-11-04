@@ -13,8 +13,8 @@ namespace PatientAdmissionApp
         public DateTime Dateofbirth { get; set; } = DateTime.Now;
         public string Address { get; set; }
         public DateTime BookingDate { get; set; } = DateTime.Now;
-        public string AppointmentDate { get; set; } 
-        public string ConfirmationStatus { get; set; } = "Pending";
+        public DateTime AppointmentDate { get; set; } 
+        public string ConfirmationStatus { get; set; } 
         public string Slot { get; set; }
     }
 }

@@ -17,24 +17,17 @@
                     <DataGridTextColumn Header="Age" Binding="{Binding Age}" />
                     <DataGridTextColumn Header="Address" Binding="{Binding Address}" />
                     <DataGridTextColumn Header="ConfirmationStatus" Binding="{Binding ConfirmationStatus}" />
-                    <DataGridTextColumn Header="AppointmentDate" Binding="{Binding AppointmentDate}" />
+                    <DataGridTextColumn Header="AppointmentDate" Binding="{Binding BookingDate}" />
                     
                 </DataGrid.Columns>
             </DataGrid>
 
             <!-- Medical Records DataGrid -->
-            <DataGrid ItemsSource="{Binding ConfirmedPatients}" AutoGenerateColumns="False" Height="200" Margin="0,20,0,0">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Date" Binding="{Binding AppointmentDate}" />
-                    <DataGridTextColumn Header="Diagnosis" Binding="{Binding Diagnosis}" />
-                    <DataGridTextColumn Header="Prescription" Binding="{Binding Prescription}" />
-                    <DataGridTextColumn Header="Notes" Binding="{Binding Notes}" />
-                </DataGrid.Columns>
-            </DataGrid>
+           
 
             <!-- Action Buttons -->
             
-            <Button Content="Filter Records"  Width="150" Margin="0,10"/>
+           
         </StackPanel>
     </Grid>
 </UserControl>

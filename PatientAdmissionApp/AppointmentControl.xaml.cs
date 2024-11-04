@@ -25,12 +25,12 @@ namespace PatientAdmissionApp
             InitializeComponent();
             //this.DataContext = new PatientViewModel();
             Loaded += AppointmentControl_Loaded;
+            Unloaded += UnloadedHandler;
         }
 
         private void AppointmentControl_Loaded(object sender, RoutedEventArgs e)
         {
-            var viewModel = DataContext as PatientViewModel;
-            if (viewModel != null)
+            if(DataContext is PatientViewModel viewModel)
             {
                 viewModel.AppointmentUpdated += OnAppointmentUpdated;
             }
@@ -43,16 +43,11 @@ namespace PatientAdmissionApp
 
         private void UnloadedHandler(object sender, RoutedEventArgs e)
         {
-            var viewModel = DataContext as PatientViewModel;
-            if (viewModel != null)
+            if (DataContext is PatientViewModel viewModel)
             {
                 viewModel.AppointmentUpdated -= OnAppointmentUpdated;
             }
         }
 
-        private void PatientsDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
     }
 }

@@ -5,23 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PatientAdmissionApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200" />
-            <!-- Navigation Column -->
-            <ColumnDefinition Width="*" />
-            <!-- Content Column -->
-        </Grid.ColumnDefinitions>
+        Title="MainWindow" Height="450" Width="800" Closed="Window_Closed">
+    <Canvas>
+        <TextBlock Text="Patient Management System" FontSize="29" Canvas.Left="200" Canvas.Top="10" FontWeight="Bold"/>
+        <Button Content="Patient Registration" Canvas.Left="10" Canvas.Top="80"  x:Name="btnRegistration" Click="btnRegistration_Click" Command="{Binding RequestShowRegistrationCommand}"  />
+        <Button Content="Appointment Confirmation" Canvas.Left="10" Canvas.Top="130"  x:Name="btnAppointment" Click="btnAppointment_Click" />
+        <Button Content="Patient Dashboard" x:Name="btnDashboard" Canvas.Left="10" Canvas.Top="180" Click="btnDashboard_Click" />
+        <ContentControl x:Name="MainContent"  Margin="20" Canvas.Left="200" Canvas.Top="60" Width="400" Height="300" HorizontalAlignment="Center" VerticalAlignment="Center" />
+    </Canvas>
 
-        <StackPanel Grid.Column="0" Margin="20,20,589,20" Grid.ColumnSpan="2">
-
-            <Button Content="Patient Registration"  Width="160" Height="40" Margin="0,10" x:Name="btnRegistration" Click="btnRegistration_Click" Command="{Binding ShowRegistrationCommand}"  />
-            <Button Content="Appointment Confirmation"  Width="160" Height="40" Margin="0,10" x:Name="btnAppointment" Click="btnAppointment_Click" />
-            <Button Content="Patient Dashboard" x:Name="btnDashboard" Width="160" Height="40" Margin="0,10" Click="btnDashboard_Click" />
-            <Button Content="Exit" x:Name="Exit" Width="160" Height="40" Margin="0,10" Click="Exit_Click" />
-        </StackPanel>
-
-        <ContentControl x:Name="MainContent" Grid.Column="1" Margin="20" />
-    </Grid>
+    
 </Window>
